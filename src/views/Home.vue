@@ -1,9 +1,15 @@
 <script setup>
-import {computed} from "vue";
+import {computed, onMounted} from "vue";
 import store from "../store/index.js";
+import axiosClient from "../axiosClient.js";
 
 const meals = computed(()=> store.state.meals);
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+onMounted(async ()=>{
+ const response =  await axiosClient.get('/list.php?i=list')
+  console.log(response.data)
+})
 </script>
 <template>
   <div class="flex flex-col p-8">
