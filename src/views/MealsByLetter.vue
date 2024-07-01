@@ -1,10 +1,10 @@
-<script setup>
+MealList.vue<script setup>
 
 </script>
 
 <template>
 <div>
-  Meal List
+  By Letter
 </div>
 </template>
 
