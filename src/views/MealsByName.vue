@@ -2,7 +2,6 @@
 import {computed, onMounted, ref} from "vue";
 import store from "../store/index.js";
 import {useRoute} from "vue-router";
-import MealDetails from "./MealDetails.vue";
 import YouTubeButton from "../components/YouTubeButton.vue";
 
 
@@ -47,7 +46,7 @@ onMounted(()=>{
         <h3 class=" font-bold">{{meal.strMeal}}</h3>
         <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa cum doloribus iste.</p>
         <div class="flex items-center justify-between pb-4">
-          <YouTubeButton :href="meal.strYoutube"/>
+          <YouTubeButton :href="meal.strYoutube"></YouTubeButton>
         </div>
       </div>
     </div>
