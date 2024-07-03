@@ -2,6 +2,8 @@
 import {computed, onMounted, ref} from "vue";
 import store from "../store/index.js";
 import {useRoute} from "vue-router";
+import MealDetails from "./MealDetails.vue";
+import YouTubeButton from "../components/YouTubeButton.vue";
 
 
 const route = useRoute()
@@ -34,7 +36,7 @@ onMounted(()=>{
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-5 p-8">
     <div v-for="meal of meals" :key="meal.idMeal" class="bg-white shadow rounded-xl">
-      <router-link to="/">
+      <router-link :to="{name: 'mealDetails', params: {id: meal.idMeal}}">
         <img
             :src="meal.strMealThumb"
             :alt="`${meal.strMeal} image`"
@@ -45,10 +47,7 @@ onMounted(()=>{
         <h3 class=" font-bold">{{meal.strMeal}}</h3>
         <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa cum doloribus iste.</p>
         <div class="flex items-center justify-between pb-4">
-          <a :href="meal.strYoutube" target="_blank"
-             class="px-3 py-2 rounded border-2 text-white border-red-600 bg-red-500 hover:bg-red-600 transition-colors"
-          >
-            YouTube</a>
+          <YouTubeButton :href="meal.strYoutube"/>
         </div>
       </div>
     </div>
