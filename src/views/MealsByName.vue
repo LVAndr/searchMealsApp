@@ -2,7 +2,7 @@
 import {computed, onMounted, ref} from "vue";
 import store from "../store/index.js";
 import {useRoute} from "vue-router";
-import MealItem from "../components/MealItem.vue";
+import Meals from "../components/Meals.vue";
 
 
 const route = useRoute()
@@ -11,7 +11,6 @@ const meals = computed(()=> store.state.searchedMeals);
 
 function searchMeals(){
   store.dispatch('searchMeals', keyword.value);
-  console.log(meals.value)
 }
 
 onMounted(()=>{
@@ -27,19 +26,13 @@ onMounted(()=>{
   <input
       type="text" name="" id=""
       v-model="keyword"
-      class="rounded border-2 border-gray-200 w-full"
+      class="rounded border-2 border-gray-200 w-full bg-white"
       placeholder="Search for meals"
       @change="searchMeals"
   />
 </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 p-8">
-    <MealItem
-              v-for="meal of meals"
-              :key="meal.idMeal"
-              :meal="meal"
-    />
-  </div>
+  <Meals :meals="meals"/>
 </template>
 
 <style scoped>

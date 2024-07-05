@@ -1,12 +1,13 @@
 <script setup>
 import YouTubeButton from "./YouTubeButton.vue";
 
-const {meal} = defineProps({
+const { meal } = defineProps({
   meal: {
-    type: Object,
-    required: true
+    required: true,
+    type: Object
   }
 })
+
 </script>
 
 <template>
