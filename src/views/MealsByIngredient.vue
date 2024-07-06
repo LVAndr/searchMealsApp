@@ -1,7 +1,7 @@
 <script setup>
 
 import { computed } from "@vue/reactivity";
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import store from "../store";
 import Meals from '../components/Meals.vue'
