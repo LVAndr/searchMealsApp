@@ -21,12 +21,12 @@ onMounted(()=>{
 </script>
 
 <template>
-  <div class="p-8">
-    <h1 class="text-4xl font-bold mb-4">Ingredients</h1>
+  <div class="p-8 pb-0">
+    <h1 class="text-4xl font-bold mb-4 text-orange-500">Ingredients</h1>
       <input
           type="text" name="" id=""
           v-model="keyword"
-          class="rounded border-2 border-gray-200 w-full bg-white mb-3"
+          class="rounded border-2 border-gray-200 w-full bg-white focus:ring-orange-500 focus:border-orange-500 mb-3"
           placeholder="Search for Ingredients"
       />
     <router-link
