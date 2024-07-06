@@ -30,7 +30,7 @@ onMounted(()=>{
   <input
       type="text" name="" id=""
       v-model="keyword"
-      class="rounded border-2 border-gray-200 w-full bg-white"
+      class="rounded border-2 border-gray-200 w-full bg-white focus:ring-orange-500 focus:border-orange-500 mb-3"
       placeholder="Search for meals"
       @change="searchMeals"
   />
