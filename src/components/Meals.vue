@@ -11,7 +11,7 @@ const { meals } = defineProps({
 </script>
 
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 px-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 px-8 py-4">
     <MealItem
         v-for="meal of meals"
         :key="meal.idMeal"

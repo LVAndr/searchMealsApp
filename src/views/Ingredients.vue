@@ -1,16 +1,29 @@
 <script setup>
 
+import {useRouter} from "vue-router";
 import {computed, onMounted, ref} from "vue";
 import axiosClient from "../axiosClient.js";
+import store from "../store/index.js";
 
+
+const router = useRouter();
 const keyword = ref('');
 const ingredients = ref([]);
+
 const computedIngredients = computed(()=>{
   if (!computedIngredients)return ingredients;
-  return ingredients.value.filter(i =>
+  return ingredients.value.filter((i) =>
       (i.strDescription || '').toLowerCase().includes(keyword.value.toLowerCase()) ||
       i.strIngredient.toLowerCase().includes(keyword.value.toLowerCase()));
-})
+});
+
+function openIngredient(ingredient) {
+  store.commit('setIngredient', ingredient)
+  router.push({
+    name: 'byIngredient',
+    params: {ingredient: ingredient.strIngredient}
+  })
+}
 
 onMounted(()=>{
   axiosClient.get('list.php?i=list')
@@ -29,17 +42,17 @@ onMounted(()=>{
           class="rounded border-2 border-gray-200 w-full bg-white focus:ring-orange-500 focus:border-orange-500 mb-3"
           placeholder="Search for Ingredients"
       />
-    <router-link
-        :to="{
-        name: 'byIngredient',
-        params: {ingredient: ingredient.strIngredient}
-        }"
-        v-for="ingredient of computedIngredients" :key="ingredient.idIngredient"
-        class="block bg-white rounded p-3 mb-3 shadow"
-    >
-      <h3 class="text-2xl font-bold mb-2">{{ingredient.strIngredient}}</h3>
-      <p>{{ingredient.strDescription}}</p>
-    </router-link>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <a href="#"
+         @click.prevent = "openIngredient(ingredient)"
+         v-for="ingredient of computedIngredients"
+         :key="ingredient.idIngredient"
+         class="block bg-white rounded p-3 mb-3 shadow"
+      >
+        <h3 class="text-2xl font-bold mb-2">{{ingredient.strIngredient}}</h3>
+        <p>{{ingredient.strDescription}}</p>
+      </a>
+    </div>
   </div>
 </template>
 
